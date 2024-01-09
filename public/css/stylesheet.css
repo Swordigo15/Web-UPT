@@ -1,0 +1,57 @@
+header {
+    padding: 20px 0;
+    background-color: rgba(255, 246, 195, 0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.sideMenu{
+    color: aquamarine;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+main .container {
+    display: flex;
+    justify-content: center;
+    padding: 150px 150px 0px;
+}
+
+.navbar .g-body-tertiary{
+    background-color: white;
+}
+
+.btn{
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(255, 252, 233);
+    background-color: rgba(231, 70, 70, 1);
+    border: 0px;
+    border-radius: 36px;
+    box-shadow: 2px 3px 3px #0000005a;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn:hover{
+    cursor: pointer;
+    color: rgba(231, 70, 70, 1);
+    background-color: rgb(255, 252, 233);
+    box-shadow: 2px 3px 3px rgba(231, 70, 70, 1);
+}
+
+.btn:active{
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(2px);
+}
