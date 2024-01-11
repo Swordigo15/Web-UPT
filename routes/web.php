@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TamuController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('welcome'); });
 
-Route::get('/DaftarTamu', [TamuController::class, 'index'])->name('DaftarTamu');
+Route::get('/Home', function(){
+    return view('home', [
+        "title" => "HOME"
+    ]);
+})->name('Home');
+
+Route::get('/About', function(){
+    return view('about', [
+        "title" => "ABOUT",
+        "name" => "Muhammad Annys",
+        "email" => "annys.abubakar@gmail.com",
+        "image" => "logo.png"
+    ]);
+})->name('About');
+
+Route::get('/Post', [PostController::class, 'post'])->name('Post');
+Route::get('/Post/{post:slug}', [PostController::class, 'singlePost']);

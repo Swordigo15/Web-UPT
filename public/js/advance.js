@@ -47,4 +47,6 @@ class Mahasiswa{
 }
 
 let faza = new Mahasiswa('faza', 12);
-let annys = new Mahasiswa('annys', 12);
+let nasser = new Mahasiswa('nasser', 12);
+
+//Closure

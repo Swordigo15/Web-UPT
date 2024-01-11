@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tamus', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->date('Tanggal');
-            $table->date('Jam');
-            $table->string('Nama');
-            $table->string('NoTelp');
-            $table->text('Keperluan');
+            $table->foreignId('categoryId');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('author');
+            $table->text('excerpt');
+            $table->text('body');
+            $table->timestamp('published_at')->nullable;
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tamus');
+        Schema::dropIfExists('posts');
     }
 };
