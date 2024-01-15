@@ -36,16 +36,18 @@ Route::get('/About', function(){
 Route::get('/Post', [PostController::class, 'post'])->name('Post');
 Route::get('/Post/{post:slug}', [PostController::class, 'singlePost']);
 
-Route::get('categories/{category:slug}', function(Category $category){
-    return view('categories', [
+Route::get('categories', function(){
+    return view('category', [
         'title' => 'Category',
-        'posts' => Category::all(),
+        'active'=> 'category',
+        'categories' => Category::all(),
     ]);
 });
 
 Route::get('categories/{category:slug}', function(Category $category){
     return view('posts', [
         'title' => "Post by Categoty : $category->name",
+        'active'=> 'category',
         'posts' => $category->posts->load('category', 'author')
     ]);
 });
@@ -53,6 +55,7 @@ Route::get('categories/{category:slug}', function(Category $category){
 Route::get('authors/{author:username}', function(User $author){
     return view('posts', [
         'title' => "Post by Aithor : $author->name",
+        'active'=> 'author',
         'posts' => $author->posts->load('category', 'author')
     ]);
 });
