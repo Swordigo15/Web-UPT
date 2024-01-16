@@ -20,13 +20,15 @@ Route::get('/', function () { return view('welcome'); });
 
 Route::get('/Home', function(){
     return view('home', [
-        "title" => "HOME"
+        "title" => "HOME",
+        'active'=> 'home',
     ]);
 })->name('Home');
 
 Route::get('/About', function(){
     return view('about', [
         "title" => "ABOUT",
+        'active'=> 'about',
         "name" => "Muhammad Annys",
         "email" => "annys.abubakar@gmail.com",
         "image" => "logo.png"
@@ -36,26 +38,10 @@ Route::get('/About', function(){
 Route::get('/Post', [PostController::class, 'post'])->name('Post');
 Route::get('/Post/{post:slug}', [PostController::class, 'singlePost']);
 
-Route::get('categories', function(){
+Route::get('Categories', function(){
     return view('category', [
         'title' => 'Category',
         'active'=> 'category',
         'categories' => Category::all(),
-    ]);
-});
-
-Route::get('categories/{category:slug}', function(Category $category){
-    return view('posts', [
-        'title' => "Post by Categoty : $category->name",
-        'active'=> 'category',
-        'posts' => $category->posts->load('category', 'author')
-    ]);
-});
-
-Route::get('authors/{author:username}', function(User $author){
-    return view('posts', [
-        'title' => "Post by Aithor : $author->name",
-        'active'=> 'author',
-        'posts' => $author->posts->load('category', 'author')
     ]);
 });
