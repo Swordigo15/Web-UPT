@@ -50,3 +50,27 @@ let faza = new Mahasiswa('faza', 12);
 let nasser = new Mahasiswa('nasser', 12);
 
 //Closure
+function init(){
+    let name = "Annys";
+    function tampilkanNama(){
+        console.log(nama);
+    }
+    
+    //! tampilkanNama();                //Annys
+
+    //! console.log(tampilkanNama());   //Annys
+    
+    //! console.log(tampilkanNama);
+    // Output :      
+    // function tampilkanNama(){
+    //     console.log(nama);
+    // }
+    
+    //! console.dir(tampilkanNama);
+    // Output : objek tampilkanNama
+
+    return tampilkanNama();
+}
+
+let panggilNama = init();
+panggilNama();  
