@@ -42,7 +42,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
-                <img class="img-preview img-fluid">
+                <img class="img-preview img-fluid mb-3 col-sm-5">
                 <input class="form-control @error('image') is-invalid @enderror" 
                 type="file" id="image" name="image"
                 onchange="previewImage()">
@@ -77,8 +77,20 @@
 
         document.addEventListener('tris-file-accept', function(e){
             e.preventDefault();
-        })
+        });
 
-        const image = document.querySelector('#image');
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.file[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection
