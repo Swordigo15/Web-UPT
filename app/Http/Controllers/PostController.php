@@ -33,6 +33,9 @@ class PostController extends Controller
     }
 
     function singlePost(Post $post){
+        $post->views += 1;
+        $post->save();
+
         return view('post', [
             "title" => "Single Post",
             "active" => 'blog',

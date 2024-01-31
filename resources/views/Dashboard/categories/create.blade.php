@@ -3,12 +3,10 @@
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Create New Category</h1>
-        <h1>BELUM SELESAI!!!</h1>
-        {{-- kurang tambah iage field di database --}}
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/categories" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -21,7 +19,17 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Post Image</label>
+                <label for="slug" class="form-label">Slug</label>
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" 
+                id="slug" name="slug" required value="{{ old('slug') }}">
+                @error('slug')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Category Image</label>
                 <img class="img-preview img-fluid mb-3 col-sm-5">
                 <input class="form-control @error('image') is-invalid @enderror" 
                 type="file" id="image" name="image"
@@ -38,6 +46,19 @@
     </div>
 
     <script>
+        const name = document.querySelector('#name');
+        const slug = document.querySelector('#slug');
+
+        name.addEventListener('change', function(){
+            fetch('/dashboard/categories/checkSlug?name=' + name.value)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug)
+        });
+
+        document.addEventListener('tris-file-accept', function(e){
+            e.preventDefault();
+        });
+
         function previewImage(){
             const image = document.querySelector('#image');
             const imgPreview = document.querySelector('.img-preview');

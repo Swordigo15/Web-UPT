@@ -37,7 +37,7 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request);
+        // dd($request);
         // return $request->file('image')->store('post-images');
 
         $validatedData = $request->validate([
@@ -114,7 +114,6 @@ class DashboardPostController extends Controller
 
         Post::where('id', $post->id)
             ->update($validatedData);
-
 
         return redirect('dashboard/posts')->with('success', 'Post has been updated!');
     }

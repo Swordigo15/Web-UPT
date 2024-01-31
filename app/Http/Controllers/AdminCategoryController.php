@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AdminCategoryController extends Controller
 {
@@ -33,16 +34,14 @@ class AdminCategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255',            
+            'slug'  => 'required|unique:categories',
             'image' => 'image|file|max:1024',
         ]);
 
         if($request->file('image')){
             $validatedData['image'] = $request->file('image')->store('category-images');
         }
-        
-        //!!! category id not added yet
-        // $validatedData['category_id'] = auth()->user()->id;
 
         Category::create($validatedData);
 
@@ -65,13 +64,14 @@ class AdminCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $rules = [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255',            
+            'slug'  => 'required|unique:categories',
             'image' => 'image|file|max:1024',
         ];
         
-        // if($request->slug != $post->slug){
-        //     $rules['slug']  = 'required|unique:posts';
-        // }
+        if($request->slug != $category->slug){
+            $rules['slug']  = 'required|unique:categories';
+        }
         
         $validatedData = $request->validate($rules);
         
@@ -100,5 +100,10 @@ class AdminCategoryController extends Controller
         }
         Category::destroy($category->id);
         return redirect('dashboard/categories')->with('success', 'Category has been deleted!');
+    }
+
+    public function checkSlug(Request $request){
+        $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
+        return response()->json(['slug' => $slug]);
     }
 }

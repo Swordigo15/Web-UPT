@@ -27,8 +27,6 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <a href="/dashboard/categories/{{ $category->name }}" class="badge bg-info">
-                                <i class="bi bi-eye"></i></a>
                             <a href="/dashboard/categories/{{ $category->nmae }}/edit" class="badge bg-warning">
                                 <i class="bi bi-pencil"></i></a>
                             <form action="/dashboard/categories/{{ $category->name }}" method="post" class="d-inline"> 

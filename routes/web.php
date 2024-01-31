@@ -1,14 +1,15 @@
 <?php
 
-use App\Models\Category;
+use App\Models\Post;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('/Home', function(){
     return view('home', [
         "title" => "HOME",
         'active'=> 'home',
+        'latest' => Post::latest('created_at')->first(),
+        'popular' => Post::orderBy('views', 'DESC')->first(),
     ]);
 })->name('Home');
 
@@ -36,7 +39,7 @@ Route::get('/About', function(){
         'active'=> 'about',
         "name" => "Muhammad Annys",
         "email" => "annys.abubakar@gmail.com",
-        "image" => "logo.png"
+        "image" => "foto.jpg"
     ]);
 })->name('About');
 
