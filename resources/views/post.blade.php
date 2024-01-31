@@ -11,7 +11,7 @@
                     <a href="/Post?category={{ $post->category->slug }}" 
                         class="text-decoration-none">{{ $post->category->name }}</a></p>
 
-                <p>Views : {{ $post->views += 1 }}</p>
+                <p>Views : {{ $post->views }}</p>
 
                 @if ($post->image)
                     <div style="max-height : 350px; overflow:hidden;">

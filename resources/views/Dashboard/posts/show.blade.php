@@ -19,6 +19,8 @@
                 </button>
             </form>
 
+            <p>Views : {{ $post->views }}</p>
+
             @if ($post->image)
                 <div style="max-height : 350px; overflow:hidden;">
                     <img src="{{ asset('/storage/'.$post->image) }}" 
