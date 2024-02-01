@@ -25,7 +25,7 @@
         <div class="card mb-3">
             @if ($posts[0]->image)
                 <div style="max-height : 400px; overflow:hidden;">
-                    <img src="{{ asset('/storage/'.$posts[0]->image) }}" 
+                    <img src="{{ asset($posts[0]->image) }}" 
                     alt="{{ $posts[0]->category->name }}" 
                     class="img-fluid">
                 </div>

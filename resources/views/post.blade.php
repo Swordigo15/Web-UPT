@@ -15,7 +15,7 @@
 
                 @if ($post->image)
                     <div style="max-height : 350px; overflow:hidden;">
-                        <img src="{{ asset('/storage/'.$post->image) }}" 
+                        <img src="{{ asset($post->image) }}" 
                         alt="{{ $post->category->name }}" 
                         class="img-fluid">
                     </div>

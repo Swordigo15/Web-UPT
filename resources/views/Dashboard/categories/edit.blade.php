@@ -33,7 +33,7 @@
                 <label for="image" class="form-label">Category Image</label>
                 <input type="hidden" name="oldImage" value="{{ $category->image }}">
                 @if ($category->image)
-                    <img src="{{ asset('storage/'.$category->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                    <img src="{{ asset($category->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                 @else
                     <img class="img-preview img-fluid mb-3 col-sm-5">
                 @endif

@@ -25,7 +25,7 @@
         <div class="card mb-3">
             @if ($latest->image)
                 <div style="max-height : 480px; overflow:hidden;">
-                    <img src="{{ asset('/storage/'.$latest->image) }}" 
+                    <img src="{{ asset($latest->image) }}" 
                     alt="{{ $latest->category->name }}" 
                     class="img-fluid">
                 </div>
@@ -61,7 +61,7 @@
         <div class="card mb-3">
             @if ($popular->image)
                 <div style="max-height : 480px; overflow:hidden;">
-                    <img src="{{ asset('/storage/'.$popular->image) }}" 
+                    <img src="{{ asset($popular->image) }}" 
                     alt="{{ $popular->category->name }}" 
                     class="img-fluid">
                 </div>
