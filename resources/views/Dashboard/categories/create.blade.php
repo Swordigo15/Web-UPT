@@ -65,7 +65,7 @@
             imgPreview.style.display = 'block';
 
             const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.file[0]);
+            oFReader.readAsDataURL(image.files[0]);
 
             oFReader.onload = function(oFREvent){
                 imgPreview.src = oFREvent.target.result;
